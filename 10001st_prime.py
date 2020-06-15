@@ -1,5 +1,6 @@
 '''
 Find the 10001st prime number.
+100001st prime: 104743
 '''
 
 import math
