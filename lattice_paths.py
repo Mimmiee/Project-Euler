@@ -28,6 +28,6 @@ while temp > 1:
     temp -= 1
 
 
-paths = (nk /(k*n) )
+paths = (nk /(k*n))
 
 print(paths)
