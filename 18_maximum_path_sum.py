@@ -28,6 +28,7 @@ triangle =             [[75],
 
 max_sum = 0 
 
+#Create another triangle in order to check which node has been checked 
 from copy import copy, deepcopy
 check_tri = deepcopy(triangle)
 
@@ -37,20 +38,22 @@ for i in range(0, len(check_tri)):
         check_tri[i][j] = False
 
 
-
+#Returns the value of the node of the given index.
 def check_next(i, j):
     if j < len(triangle[i]) and not check_tri[i][j] == True:
         return int(triangle[i][j])
     else:
         return 0
 
+#Finds a new path and returns the sum.
 def new_sequence():
     i = 0
     j = 0
     temp_sum = 0
 
+    #Update the line index until the bottom is reached 
     while i < len(triangle) -1:
-
+        #Uses the bool-matrix in order to know which node has been checked.
         left = check_tri[i+1][j]
         right = check_tri[i+1][j+1]
 
@@ -63,24 +66,21 @@ def new_sequence():
             j +=1 
             i += 1
         else:
+            #If both left and right is checked, 
+            #set current node to true, and the nodes under to false again
             check_tri[i+1][j] = False
             check_tri[i+1][j+1] = False
             break
 
-
     temp_sum += check_next(i,j)
     check_tri[i][j] = True 
 
-    # if check_tri[0][0] == True:
-    #     end = True
-
     return temp_sum 
  
-
+#Keep checking paths until the first node is checked. 
 while check_tri[0][0] == False: 
     temp = new_sequence()
-    # print(temp)
-    # print(check_tri)
+  
     if temp > max_sum:
         max_sum = temp
 
